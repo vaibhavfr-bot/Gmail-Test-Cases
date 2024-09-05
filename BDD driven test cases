@@ -1,0 +1,27 @@
+Feature: Compose and send email in Gmail
+
+  Scenario: Successfully send an email with subject and body
+    Given the user is logged into Gmail
+    When the user clicks on "Compose" button
+    And the user enters "Incubyte" in the subject field
+    And the user enters "QA test for Incubyte" in the body field
+    And the user clicks on "Send" button
+    Then the email should be sent successfully
+
+Feature: Compose email in Gmail with errors
+
+  Scenario: Attempt to send email without a subject
+    Given the user is logged into Gmail
+    When the user clicks on "Compose" button
+    And the user leaves the subject field blank
+    And the user enters "QA test for Incubyte" in the body field
+    And the user clicks on "Send" button
+    Then a warning should be displayed indicating the subject is missing
+
+  Scenario: Attempt to send email without body
+    Given the user is logged into Gmail
+    When the user clicks on "Compose" button
+    And the user enters "Incubyte" in the subject field
+    And the user leaves the body field blank
+    And the user clicks on "Send" button
+    Then an error message should appear indicating the body is empty
